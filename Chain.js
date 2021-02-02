@@ -1,11 +1,11 @@
 class Chain {
- constructor( body1 , body2 ){
+ constructor( body1 , point2 ){
 
      var chain_props={
-    stiffness:0,
-    length:50,
+    stiffness:0.05,
+    length:10,
     bodyA: body1,
-    bodyB: body2
+    pointB: point2
      }
 
      this.Chain = Matter.Constraint.create(chain_props);
@@ -14,9 +14,18 @@ class Chain {
  }
 
   display(){
-  
-  line(this.Chain.bodyA.position.x , this.Chain.bodyA.position.y , this.Chain.bodyB.position.x , this.Chain.bodyB.position.y);
+  if(this.Chain.bodyA){
+
+    line(this.Chain.bodyA.position.x , this.Chain.bodyA.position.y , this.Chain.pointB.x , this.Chain.pointB.y);
+
+  }
+  //line(this.Chain.bodyA.position.x , this.Chain.bodyA.position.y , this.Chain.pointB.x , this.Chain.pointB.y);
 
   }
 
+    chainBreak() {
+
+        this.Chain.bodyA = null;
+
+    }
 }
